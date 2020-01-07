@@ -1,6 +1,14 @@
 const module = {};
 const exports = {};
 
+function mockCallback() {
+}
+
+const mockContext = {
+    succeed: mockCallback,
+    fail: mockCallback,
+}
+
 const mockResponse = [
   {
     "name": "Bond St / Queen St E",
@@ -14,9 +22,6 @@ const mockResponse = [
   },
 ];
 
-function mockCallback() {
-}
-
 function mockRequest(url, json, callback) {
     callback(null, {statusCode: 200}, mockResponse);
 }
@@ -27,7 +32,9 @@ function require(name) {
 
 function ses(region) {
     return {
-        sendEmail: mockCallback
+        sendEmail: function(parameters, callback) {
+           callback(null, {});
+        }
     }
 }
 
