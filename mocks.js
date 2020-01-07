@@ -3,6 +3,11 @@ const exports = {};
 
 function mockCallback() {
 }
+const mockError = "error";
+
+const mockEvent = {
+    'something': 42
+};
 
 const mockContext = {
     succeed: mockCallback,

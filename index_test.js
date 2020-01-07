@@ -24,10 +24,11 @@ describe("bikeshare-notifier", () => {
             callback("error", {}, {});
         };
 
-        exports.handler({}, mockContext, mockCallback);
+        exports.handler(mockEvent, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(0);
         expect(mockContext.fail).toHaveBeenCalledTimes(1);
+        expect(mockContext.fail).toHaveBeenCalledWith(mockError);
     })
 
     it('should send an email with station information', () => {
@@ -47,27 +48,29 @@ describe("bikeshare-notifier", () => {
         };
 
 
-        exports.handler({}, mockContext, mockCallback);
+        exports.handler(mockEvent, mockContext, mockCallback);
 
         expect(ses.sendEmail).toHaveBeenCalledTimes(1);
         expect(ses.sendEmail).toHaveBeenCalledWith(expectedParameters, jasmine.anything())
     });
 
     it('should mark context as a success if the email successfully sends', () => {
-        exports.handler({}, mockContext, mockCallback);
+        exports.handler(mockEvent, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(1);
+        expect(mockContext.succeed).toHaveBeenCalledWith(mockEvent);
         expect(mockContext.fail).toHaveBeenCalledTimes(0);
     });
 
     it('should mark context as a failure if the email does not send', () => {
         ses.sendEmail = (parameters, callback) => {
-           callback("error", null);
+           callback(mockError, null);
         };
 
-        exports.handler({}, mockContext, mockCallback);
+        exports.handler(mockEvent, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(0);
         expect(mockContext.fail).toHaveBeenCalledTimes(1);
+        expect(mockContext.fail).toHaveBeenCalledWith(mockError);
     });
 });
