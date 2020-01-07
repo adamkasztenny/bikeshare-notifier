@@ -1,0 +1,26 @@
+{
+  "name": "bikeshare-notifier",
+  "version": "1.0.0",
+  "description": "AWS Lambda that sends emails to notify about Toronto BikeShare station availability",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamkasztenny/bikeshare-notifier.git"
+  },
+  "author": "Adam Kasztenny",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/adamkasztenny/bikeshare-notifier/issues"
+  },
+  "homepage": "https://github.com/adamkasztenny/bikeshare-notifier#readme",
+  "devDependencies": {
+    "karma": "^3.1.4",
+    "karma-jasmine": "^2.0.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.598.0"
+  }
+}
