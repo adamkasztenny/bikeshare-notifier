@@ -17,14 +17,18 @@ exports.handler = (event, context, callback) => {
 
         const message = createMessage(stations)
         const parameters = createParameters(message);
-        return notify(parameters, event, context, callback)
+        return notify(parameters, event, context, callback);
 	});
 }
 
 function createMessage(stations) {
-    const startStation = stations.filter(station => station.name == getStartStation())[0] || {};
-    const endStation = stations.filter(station => station.name == getEndStation())[0] || {};
+    const startStation = findStation(stations, getStartStation());
+    const endStation = findStation(stations, getEndStation());
     return createStationMessage(startStation) + "\n" + createStationMessage(endStation);
+}
+
+function findStation(stations, name) {
+    return stations.filter(station => station.name == name)[0] || {};
 }
 
 function createStationMessage(station) {
@@ -70,5 +74,5 @@ function getEndStation() {
 }
 
 function getAddress() {
-    return process.env.ADDRESS
+    return process.env.ADDRESS;
 }

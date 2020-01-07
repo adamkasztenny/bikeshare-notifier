@@ -13,7 +13,7 @@ describe("bikeshare-notifier", function () {
     });
 
     it('should retreive BikeShare information', function () {
-        exports.handler({}, mockContext, mockCallback)
+        exports.handler({}, mockContext, mockCallback);
 
         expect(request.get).toHaveBeenCalledTimes(1);
         expect(request.get).toHaveBeenCalledWith(apiUrl, {json: true}, jasmine.anything());
@@ -24,7 +24,7 @@ describe("bikeshare-notifier", function () {
             callback("error", {}, {});
         };
 
-        exports.handler({}, mockContext, mockCallback)
+        exports.handler({}, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(0);
         expect(mockContext.fail).toHaveBeenCalledTimes(1);
@@ -47,14 +47,14 @@ describe("bikeshare-notifier", function () {
         };
 
 
-        exports.handler({}, mockContext, mockCallback)
+        exports.handler({}, mockContext, mockCallback);
 
         expect(ses.sendEmail).toHaveBeenCalledTimes(1);
         expect(ses.sendEmail).toHaveBeenCalledWith(expectedParameters, jasmine.anything())
     });
 
     it('should mark context as a success if the email successfully sends', function () {
-        exports.handler({}, mockContext, mockCallback)
+        exports.handler({}, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(1);
         expect(mockContext.fail).toHaveBeenCalledTimes(0);
@@ -65,7 +65,7 @@ describe("bikeshare-notifier", function () {
            callback("error", null);
         };
 
-        exports.handler({}, mockContext, mockCallback)
+        exports.handler({}, mockContext, mockCallback);
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(0);
         expect(mockContext.fail).toHaveBeenCalledTimes(1);
