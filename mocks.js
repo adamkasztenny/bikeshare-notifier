@@ -9,16 +9,19 @@ const mockContext = {
     fail: mockCallback,
 }
 
+const testStartStation = "Davenport Rd / Avenue Rd";
+const testEndStation = "Bond St / Queen St E";
+
 const mockResponse = [
   {
-    "name": "Bond St / Queen St E",
-    "free": 2,
-    "bikes": 4
-  },
-  {
-    "name": "Davenport Rd / Avenue Rd",
+    "name": testStartStation,
     "free": 7,
     "bikes": 1
+  },
+  {
+    "name": testEndStation,
+    "free": 2,
+    "bikes": 4
   },
 ];
 

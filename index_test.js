@@ -3,8 +3,8 @@ describe("bikeshare-notifier", function () {
 
     beforeEach(function () {
         process.env.ADDRESS = testEmail;
-        process.env.START_STATION = "Davenport Rd / Avenue Rd";
-        process.env.END_STATION = "Bond St / Queen St E";
+        process.env.START_STATION = testStartStation;
+        process.env.END_STATION = testEndStation;
 
         spyOn(ses, 'sendEmail').and.callThrough();
         spyOn(request, 'get').and.callThrough();
@@ -31,7 +31,7 @@ describe("bikeshare-notifier", function () {
     })
 
     it('should send an email with station information', function () {
-        const expectedMessage = "Davenport Rd / Avenue Rd has 7 slots free and 1 bikes.\nBond St / Queen St E has 2 slots free and 4 bikes.";
+        const expectedMessage = `${testStartStation} has 7 slots free and 1 bikes.\n${testEndStation} has 2 slots free and 4 bikes.`;
         const expectedParameters = {
             Destination: {
                 ToAddresses: [testEmail]
@@ -53,7 +53,7 @@ describe("bikeshare-notifier", function () {
         expect(ses.sendEmail).toHaveBeenCalledWith(expectedParameters, jasmine.anything())
     });
 
-    it('should mark context successfully on successfully sending an email', function () {
+    it('should mark context as a success if the email successfully sends', function () {
         exports.handler({}, mockContext, mockCallback)
 
         expect(mockContext.succeed).toHaveBeenCalledTimes(1);
