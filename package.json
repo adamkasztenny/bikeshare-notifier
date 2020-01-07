@@ -21,6 +21,7 @@
     "karma-jasmine": "^2.0.1"
   },
   "dependencies": {
-    "aws-sdk": "^2.598.0"
+    "aws-sdk": "^2.598.0",
+    "request": "^2.88.0"
   }
 }
