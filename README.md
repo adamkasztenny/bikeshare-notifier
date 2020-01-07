@@ -10,9 +10,9 @@ AWS Lambda that sends emails to notify about Toronto BikeShare station availabil
         make deploy
     ```
 4. Make sure the following environment variables are set in the lambda config:
-  * `ADDRESS`, the email address to send to and from
-  * `START_STATION`, the Toronto BikeShare station you travel to in the morning, e.g. `Queen St. E / Eastern Ave`
-  * `END_STATION`, the Toronto BikeShare station you return to in the evening
+  * `ADDRESS`, the email address to send to and from. Make sure SES is configured to send emails from this address
+  * `START_STATION`, the Toronto BikeShare station you start from in the morning, e.g. `Queen St. E / Eastern Ave`
+  * `END_STATION`, the Toronto BikeShare station you return from in the evening
 5. Create a CloudWatch cron trigger, e.g. `0 14,10 ? * MON-FRI *`
 
 ## Running:
